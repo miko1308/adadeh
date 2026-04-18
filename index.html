@@ -637,14 +637,6 @@
     <span class="sticker">🌙 ~3 Bulan</span>
     <span class="sticker">💖 27 Bulan</span>
   </div>
-  <form id="formWish">
-  <input type="text" id="make_wish" placeholder="Make a wish">
-  <input type="date" id="plan_date">
-  <input type="text" id="mood" placeholder="Mood">
-  <input type="text" id="kenangan" placeholder="Kenangan">
-  <input type="text" id="quiz" placeholder="Nilai Quiz">
-  <button type="submit">Kirim</button>
-</form>
 
   <div class="countdown-box">
     <div class="countdown-label">Hitung mundur ke 18 April 2026</div>
@@ -1152,53 +1144,6 @@
 </div>
 
 <script>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCn9WYr9zpepKKjDTkRZP_LGCiazEGP3xY",
-    authDomain: "anniversary-app-141ce.firebaseapp.com",
-    databaseURL: "https://anniversary-app-141ce-default-rtdb.firebaseio.com",
-    projectId: "anniversary-app-141ce",
-    storageBucket: "anniversary-app-141ce.firebasestorage.app",
-    messagingSenderId: "741115743387",
-    appId: "1:741115743387:web:9931dc9a6e40314db60a3e"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-
-  const form = document.getElementById("formWish");
-
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const makeWish = document.getElementById("make_wish").value;
-    const planDate = document.getElementById("plan_date").value;
-    const mood = document.getElementById("mood").value;
-    const kenangan = document.getElementById("kenangan").value;
-    const quiz = document.getElementById("quiz").value;
-
-    const dataRef = ref(db, "data_user");
-    const newData = push(dataRef);
-
-    set(newData, {
-      make_wish: makeWish,
-      plan_date: planDate,
-      mood: mood,
-      kenangan: kenangan,
-      quiz: quiz,
-      created_at: new Date().toISOString()
-    })
-    .then(() => {
-      alert("Data berhasil masuk!");
-      form.reset();
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  });
   // ===== SAFE STORAGE (works on file:// protocol) =====
   const _mem = {};
   function lsGet(k){ try{ return lsGet(k); }catch(e){ return _mem[k]||null; } }
