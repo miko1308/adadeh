@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halaman Aku 🐱💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink1: #ff6eb4; --pink2: #ffb3d9; --pink3: #ffe0f0;
+    --pink4: #fff0f7; --pink5: #ffd6ec; --accent: #ff3d96;
+    --dark: #a0005a; --soft: #ff85c1;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background: linear-gradient(135deg,#ffe8f5 0%,#ffc8e8 60%,#ffb3d9 100%); font-family:'Nunito',sans-serif; min-height:100vh; overflow-x:hidden; }
+  .hearts-bg { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
+  .heart-float { position:absolute; animation:floatUp linear infinite; opacity:0.12; }
+  @keyframes floatUp { 0%{transform:translateY(100vh) rotate(0deg);opacity:.15} 100%{transform:translateY(-10vh) rotate(360deg);opacity:0} }
+  .page-wrap { position:relative; z-index:1; min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:30px 16px 60px; animation:fadeIn .7s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  .page-header { text-align:center; margin-bottom:24px; }
+  .header-title { font-family:'Pacifico',cursive; font-size:clamp(1.6rem,6vw,2.6rem); color:#fff; text-shadow:3px 3px 0 var(--accent),5px 5px 20px rgba(255,61,150,.4); margin:10px 0 6px; }
+  .header-sub { font-family:'Dancing Script',cursive; font-size:clamp(1rem,3.5vw,1.4rem); color:var(--dark); }
+  .badge-row { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:8px; }
+  .badge { background:rgba(255,255,255,.75); border:2px solid var(--pink2); border-radius:50px; padding:4px 14px; font-size:.8rem; font-weight:700; color:var(--dark); }
+  .main-card { background:rgba(255,255,255,.88); border-radius:28px; box-shadow:0 12px 40px rgba(255,61,150,.18); border:3px solid var(--pink2); padding:28px 24px; width:100%; max-width:460px; margin-bottom:20px; }
+  .section-title { font-family:'Pacifico',cursive; font-size:1.1rem; color:var(--accent); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .plan-item { display:flex; align-items:center; gap:12px; background:var(--pink4); border-radius:14px; padding:12px 16px; margin-bottom:10px; border:2px solid var(--pink3); transition:transform .2s; }
+  .plan-item:hover { transform:translateX(4px); }
+  .plan-emoji { font-size:1.5rem; }
+  .plan-info { flex:1; }
+  .plan-label { font-size:.72rem; font-weight:800; color:var(--soft); text-transform:uppercase; letter-spacing:1px; }
+  .plan-value { font-size:1rem; font-weight:700; color:var(--dark); margin-top:2px; }
+  .no-plan { text-align:center; padding:30px; color:var(--dark); font-size:.95rem; opacity:.7; }
+  .no-plan-icon { font-size:2.5rem; margin-bottom:8px; }
+  .stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px; width:100%; max-width:460px; }
+  .stat-box { background:rgba(255,255,255,.85); border-radius:20px; padding:16px; text-align:center; border:3px solid var(--pink2); box-shadow:0 4px 16px rgba(255,100,180,.12); }
+  .stat-number { font-family:'Pacifico',cursive; font-size:1.8rem; color:var(--accent); }
+  .stat-label { font-size:.78rem; color:var(--dark); font-weight:700; margin-top:2px; }
+  .wish-card { background:rgba(255,255,255,.88); border-radius:28px; box-shadow:0 12px 40px rgba(255,61,150,.18); border:3px solid var(--pink2); padding:24px; width:100%; max-width:460px; margin-bottom:20px; }
+  .wish-display-box { background:linear-gradient(135deg,var(--pink4),var(--pink3)); border-radius:18px; padding:18px 20px; border:2.5px dashed var(--pink1); text-align:center; margin-top:8px; position:relative; }
+  .wish-display-box::before { content:'🌟'; position:absolute; top:-14px; left:50%; transform:translateX(-50%); font-size:1.6rem; }
+  .wish-display-text { font-family:'Dancing Script',cursive; font-size:1.2rem; color:var(--dark); line-height:1.6; margin-top:4px; }
+  .wish-display-none { text-align:center; padding:20px; color:var(--dark); opacity:.65; font-size:.9rem; }
+  .wish-display-none-icon { font-size:2rem; margin-bottom:6px; }
+  .btn-refresh { background:linear-gradient(135deg,var(--accent),var(--pink1)); color:#fff; border:none; padding:12px 28px; border-radius:50px; font-family:'Nunito',sans-serif; font-size:.95rem; font-weight:800; cursor:pointer; box-shadow:0 6px 20px rgba(255,61,150,.35); transition:all .3s; margin-top:10px; }
+  .btn-refresh:hover { transform:scale(1.07) translateY(-3px); }
+  .btn-secondary { background:rgba(255,255,255,.9); color:var(--accent); border:2.5px solid var(--accent); padding:10px 22px; border-radius:50px; font-family:'Nunito',sans-serif; font-size:.9rem; font-weight:800; cursor:pointer; transition:all .3s; margin-top:10px; }
+  .btn-secondary:hover { background:var(--accent); color:#fff; transform:translateY(-2px); }
+  .link-note { font-size:.8rem; color:var(--dark); opacity:.7; text-align:center; margin-top:12px; font-style:italic; }
+  .countdown-mini { background:rgba(255,255,255,.8); border-radius:16px; padding:10px 20px; text-align:center; border:2px solid var(--pink2); margin-bottom:14px; width:100%; max-width:460px; }
+  .countdown-mini-label { font-size:.75rem; font-weight:800; color:var(--dark); text-transform:uppercase; letter-spacing:1px; }
+  .countdown-mini-nums { font-family:'Pacifico',cursive; font-size:1.3rem; color:var(--accent); margin-top:2px; }
+
+  /* TAB NAV */
+  .tab-nav { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:20px; width:100%; max-width:460px; }
+  .tab-btn { background:rgba(255,255,255,.75); border:2.5px solid var(--pink2); border-radius:50px; padding:8px 16px; font-family:'Nunito',sans-serif; font-size:.82rem; font-weight:800; color:var(--dark); cursor:pointer; transition:all .25s; }
+  .tab-btn:hover { background:var(--pink3); border-color:var(--pink1); }
+  .tab-btn.active { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .tab-section { display:none; width:100%; max-width:460px; flex-direction:column; align-items:center; }
+  .tab-section.active { display:flex; }
+
+  /* MOOD */
+  .mood-emojis { display:flex; justify-content:space-around; margin:14px 0; }
+  .mood-btn { background:none; border:3px solid transparent; border-radius:50%; width:56px; height:56px; font-size:1.8rem; cursor:pointer; transition:all .25s; display:flex; align-items:center; justify-content:center; }
+  .mood-btn:hover { transform:scale(1.2); background:var(--pink4); border-color:var(--pink2); }
+  .mood-btn.selected { background:var(--pink3); border-color:var(--accent); transform:scale(1.15); }
+  .mood-result { text-align:center; font-family:'Dancing Script',cursive; font-size:1.15rem; color:var(--dark); min-height:32px; margin-top:6px; transition:all .3s; }
+
+  /* LETTER */
+  .letter-envelope { text-align:center; padding:16px 0 8px; font-size:4rem; cursor:pointer; transition:transform .4s; user-select:none; }
+  .letter-envelope:hover { transform:scale(1.1) rotate(-3deg); }
+  .letter-content { display:none; background:linear-gradient(160deg,#fffaf5,#fff0f7); border-radius:18px; padding:24px 20px; border:2px solid var(--pink3); font-family:'Dancing Script',cursive; font-size:1.1rem; color:var(--dark); line-height:1.8; animation:fadeIn .5s ease; position:relative; }
+  .letter-content::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--accent),var(--soft),var(--accent)); border-radius:18px 18px 0 0; }
+  .letter-content.open { display:block; }
+  .letter-hint { text-align:center; font-size:.8rem; color:var(--dark); opacity:.6; font-style:italic; margin-top:8px; }
+
+  /* JAR */
+  .jar-textarea { width:100%; border:2.5px solid var(--pink2); border-radius:16px; padding:14px 16px; font-family:'Nunito',sans-serif; font-size:.95rem; color:var(--dark); background:var(--pink4); resize:none; outline:none; transition:border-color .2s; min-height:90px; }
+  .jar-textarea:focus { border-color:var(--accent); }
+  .jar-list { margin-top:14px; max-height:220px; overflow-y:auto; }
+  .jar-item { background:linear-gradient(135deg,var(--pink4),var(--pink3)); border-radius:14px; padding:12px 16px; margin-bottom:8px; border:2px solid var(--pink3); font-size:.9rem; color:var(--dark); display:flex; align-items:flex-start; gap:10px; animation:popIn .3s ease; }
+  @keyframes popIn { from{opacity:0;transform:scale(.9)} to{opacity:1;transform:scale(1)} }
+  .jar-item-text { flex:1; font-family:'Dancing Script',cursive; font-size:1rem; line-height:1.5; }
+  .jar-delete { background:none; border:none; color:var(--soft); cursor:pointer; font-size:1rem; opacity:.6; transition:opacity .2s; flex-shrink:0; }
+  .jar-delete:hover { opacity:1; }
+  .jar-empty { text-align:center; padding:20px; color:var(--dark); opacity:.6; font-size:.9rem; }
+
+  /* QUIZ */
+  .quiz-question { background:linear-gradient(135deg,var(--accent),var(--soft)); border-radius:18px; padding:18px 20px; text-align:center; font-family:'Dancing Script',cursive; font-size:1.2rem; color:#fff; line-height:1.5; margin-bottom:14px; min-height:70px; display:flex; align-items:center; justify-content:center; }
+  .quiz-options { display:flex; flex-direction:column; gap:8px; }
+  .quiz-option-btn { background:var(--pink4); border:2.5px solid var(--pink3); border-radius:14px; padding:11px 16px; font-family:'Nunito',sans-serif; font-size:.9rem; font-weight:700; color:var(--dark); cursor:pointer; text-align:left; transition:all .2s; }
+  .quiz-option-btn:hover { background:var(--pink3); border-color:var(--pink1); transform:translateX(4px); }
+  .quiz-option-btn.correct { background:#d4f7e0; border-color:#4caf7d; color:#1a5c35; }
+  .quiz-option-btn.wrong { background:#ffe0e0; border-color:#f97070; color:#a00; }
+  .quiz-option-btn:disabled { cursor:default; transform:none; }
+  .quiz-score-box { background:linear-gradient(135deg,var(--pink4),var(--pink3)); border-radius:18px; padding:20px; text-align:center; border:2px dashed var(--pink1); margin-top:10px; }
+  .quiz-score-num { font-family:'Pacifico',cursive; font-size:2.2rem; color:var(--accent); }
+  .quiz-score-msg { font-family:'Dancing Script',cursive; font-size:1.1rem; color:var(--dark); margin-top:4px; }
+
+  /* LOVE METER */
+  .meter-wrap { width:100%; background:var(--pink3); border-radius:50px; height:22px; overflow:hidden; border:2px solid var(--pink2); }
+  .meter-fill { height:100%; border-radius:50px; background:linear-gradient(90deg,var(--pink1),var(--accent)); transition:width 1s ease; }
+
+  /* SPARKS */
+  @keyframes spark { 0%{transform:translateY(0) scale(1);opacity:1} 100%{transform:translateY(-70px) scale(0);opacity:0} }
+  .spark { position:fixed; pointer-events:none; font-size:1.2rem; animation:spark .8s ease forwards; z-index:999; }
+</style>
+</head>
+<body>
+
+<div class="hearts-bg" id="heartsBg"></div>
+
+<div class="page-wrap">
+
+  <!-- Header -->
+  <div class="page-header">
+    <svg width="100" height="100" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="55" cy="80" rx="32" ry="26" fill="#ffb3d9"/><ellipse cx="55" cy="46" rx="28" ry="26" fill="#ffb3d9"/>
+      <polygon points="30,25 22,8 42,22" fill="#ff85c1"/><polygon points="31,24 25,14 39,23" fill="#ff6eb4"/>
+      <polygon points="80,25 88,8 68,22" fill="#ff85c1"/><polygon points="79,24 85,14 71,23" fill="#ff6eb4"/>
+      <ellipse cx="44" cy="44" rx="6" ry="7" fill="#fff"/><ellipse cx="66" cy="44" rx="6" ry="7" fill="#fff"/>
+      <circle cx="45" cy="45" r="4" fill="#3d1f3d"/><circle cx="67" cy="45" r="4" fill="#3d1f3d"/>
+      <circle cx="46.5" cy="43.5" r="1.2" fill="#fff"/><circle cx="68.5" cy="43.5" r="1.2" fill="#fff"/>
+      <polygon points="55,53 52,57 58,57" fill="#ff6eb4"/>
+      <path d="M52,57 Q55,62 58,57" fill="none" stroke="#ff85c1" stroke-width="1.5" stroke-linecap="round"/>
+      <ellipse cx="40" cy="54" rx="7" ry="4" fill="#ff85c1" opacity="0.5"/><ellipse cx="70" cy="54" rx="7" ry="4" fill="#ff85c1" opacity="0.5"/>
+      <line x1="20" y1="52" x2="42" y2="54" stroke="#c06090" stroke-width="1.2"/><line x1="20" y1="55" x2="42" y2="56" stroke="#c06090" stroke-width="1.2"/><line x1="22" y1="58" x2="42" y2="57" stroke="#c06090" stroke-width="1.2"/>
+      <line x1="90" y1="52" x2="68" y2="54" stroke="#c06090" stroke-width="1.2"/><line x1="90" y1="55" x2="68" y2="56" stroke="#c06090" stroke-width="1.2"/><line x1="88" y1="58" x2="68" y2="57" stroke="#c06090" stroke-width="1.2"/>
+      <path d="M85,90 Q105,80 100,65 Q96,55 88,60" fill="none" stroke="#ff85c1" stroke-width="7" stroke-linecap="round"/>
+      <ellipse cx="40" cy="103" rx="10" ry="6" fill="#ff85c1"/><ellipse cx="70" cy="103" rx="10" ry="6" fill="#ff85c1"/>
+      <path d="M55,72 C55,72 48,66 48,62 C48,59 51,57 55,60 C59,57 62,59 62,62 C62,66 55,72 55,72Z" fill="#ff3d96" opacity="0.7"/>
+    </svg>
+    <div class="header-title">Halaman Aku 🐱</div>
+    <div class="header-sub">Dashboard Anniversary kita yang lucu 💕</div>
+    <div class="badge-row">
+      <span class="badge">🎀 2 Tahun</span><span class="badge">💖 ~27 Bulan</span><span class="badge">🌸 18 April 2026</span>
+    </div>
+  </div>
+
+  <!-- Countdown -->
+  <div class="countdown-mini">
+    <div class="countdown-mini-label">⏳ Hitung Mundur Anniversary</div>
+    <div class="countdown-mini-nums" id="cdNums">...</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-box"><div class="stat-number">2</div><div class="stat-label">Tahun Bersama 🎂</div></div>
+    <div class="stat-box"><div class="stat-number">~27</div><div class="stat-label">Total Bulan 🌙</div></div>
+    <div class="stat-box"><div class="stat-number">∞</div><div class="stat-label">Rasa Sayang 💕</div></div>
+    <div class="stat-box"><div class="stat-number">1</div><div class="stat-label">Yang Spesial ⭐</div></div>
+  </div>
+
+  <!-- TAB NAV -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab(0)">💌 Dari Dia</button>
+    <button class="tab-btn" onclick="switchTab(1)">📝 Love Letter</button>
+    <button class="tab-btn" onclick="switchTab(2)">🌈 Mood</button>
+    <button class="tab-btn" onclick="switchTab(3)">🫙 Kenangan</button>
+    <button class="tab-btn" onclick="switchTab(4)">🧠 Quiz</button>
+  </div>
+
+  <!-- TAB 0: DARI DIA -->
+  <div class="tab-section active" id="tab0">
+    <div class="wish-card" style="width:100%">
+      <div class="section-title">🎂 Wish-nya Dia</div>
+      <div id="wishContainer"><div class="wish-display-none"><div class="wish-display-none-icon">🕯️</div><div>Dia belum meniup lilin &amp; bikin wish~<br>Minta dia buka halamannya dulu ya! 🥺</div></div></div>
+      <button class="btn-refresh" onclick="loadWish()">🔄 Refresh Wish</button>
+      <div class="link-note">📌 Wish otomatis muncul setelah dia meniup lilin!</div>
+    </div>
+    <div class="main-card" style="width:100%">
+      <div class="section-title">📅 Date Plan dari Dia</div>
+      <div id="planContainer"><div class="no-plan"><div class="no-plan-icon">🐾</div><div>Belum ada date plan yang dipilih~<br>Minta dia buka halaman dia dulu ya! 🥺</div></div></div>
+      <button class="btn-refresh" onclick="loadPlan()">🔄 Refresh Date Plan</button>
+      <div class="link-note">📌 Date plan otomatis muncul setelah dia memilih di halamannya!</div>
+    </div>
+  </div>
+
+  <!-- TAB 1: LOVE LETTER -->
+  <div class="tab-section" id="tab1">
+    <div class="main-card" style="width:100%">
+      <div class="section-title">📝 Surat Cinta buat Dia</div>
+      <div class="letter-envelope" id="envelope" onclick="toggleLetter()" title="Klik untuk buka!">💌</div>
+      <div class="letter-hint" id="letterHint">✨ Klik amplop di atas untuk buka suratnya~</div>
+      <div class="letter-content" id="letterContent">
+        <p>Hei, sayang~ 🐱</p><br>
+        <p>Nggak terasa udah 2 tahun kita bareng. Banyak hal yang kita lewatin bareng — yang seru, yang deg-degan, yang bikin kangen, bahkan yang bikin cranky. Tapi semua itu justru bikin aku makin sayang sama kamu.</p><br>
+        <p>Kamu bukan cuma pacar aku. Kamu juga temen terbaik aku. Tempat pulang aku. Orang yang paling ngerti aku bahkan waktu aku sendiri nggak ngerti diri aku. 🥺</p><br>
+        <p>Makasih udah sabar sama aku. Makasih udah selalu ada. Makasih udah milih aku setiap harinya. 💕</p><br>
+        <p>Happy Anniversary, Sayangku. Semoga kita bisa terus nulis cerita yang indah bareng-bareng ya~ 🎀</p><br>
+        <p style="text-align:right;font-size:1.3rem">With all my love,<br>Aku 💗</p>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+        <button class="btn-secondary" onclick="editLetter()" style="flex:1">✏️ Edit Surat</button>
+      </div>
+    </div>
+    <div id="editLetterBox" style="display:none;width:100%">
+      <div class="main-card" style="width:100%">
+        <div class="section-title">✏️ Edit Suratmu</div>
+        <textarea id="letterTextarea" class="jar-textarea" rows="10" placeholder="Tulis surat cintamu di sini..."></textarea>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button class="btn-refresh" onclick="saveLetter()" style="flex:1">💾 Simpan</button>
+          <button class="btn-secondary" onclick="cancelEdit()" style="flex:1">✖️ Batal</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: MOOD -->
+  <div class="tab-section" id="tab2">
+    <div class="main-card" style="width:100%">
+      <div class="section-title">🌈 Mood Aku Hari Ini</div>
+      <p style="font-size:.85rem;color:var(--dark);margin-bottom:4px">Gimana perasaan kamu sekarang? 💭</p>
+      <div class="mood-emojis">
+        <button class="mood-btn" onclick="setMood(this,'😍','Ih lagi ngerasain butterflies! Kangen dia banget 🦋')">😍</button>
+        <button class="mood-btn" onclick="setMood(this,'🥰','Happy dan hangat banget hari ini 💗')">🥰</button>
+        <button class="mood-btn" onclick="setMood(this,'😊','Hari yang tenang dan menyenangkan~ 🌸')">😊</button>
+        <button class="mood-btn" onclick="setMood(this,'🥺','Lagi kangen banget sama dia... 🌙')">🥺</button>
+        <button class="mood-btn" onclick="setMood(this,'😔','Lagi nggak oke dikit. Butuh peluk~ 🤗')">😔</button>
+      </div>
+      <div class="mood-result" id="moodResult"></div>
+    </div>
+    <div class="main-card" style="width:100%">
+      <div class="section-title">📊 Mood History Aku</div>
+      <div id="moodHistory"><div style="text-align:center;color:var(--dark);opacity:.6;font-size:.9rem;padding:16px">Belum ada mood yang dicatat~ pilih dulu ya! 🌸</div></div>
+      <button class="btn-secondary" onclick="clearMoodHistory()" style="font-size:.8rem">🗑️ Clear History</button>
+    </div>
+    <div class="main-card" style="width:100%">
+      <div class="section-title">💌 Mood History Dia</div>
+      <p style="font-size:.82rem;color:var(--dark);opacity:.7;margin-bottom:8px">Mood yang dia input dari halamannya 🥰</p>
+      <div id="moodHistoryHimView"><div style="text-align:center;color:var(--dark);opacity:.6;font-size:.9rem;padding:16px">Dia belum input mood-nya~ 🌙</div></div>
+    </div>
+  </div>
+
+  <!-- TAB 3: MEMORY JAR -->
+  <div class="tab-section" id="tab3">
+    <div class="main-card" style="width:100%">
+      <div class="section-title">🫙 Toples Kenangan Kita 💕</div>
+      <p style="font-size:.85rem;color:var(--dark);margin-bottom:12px;opacity:.8">Tulis momen-momen manis yang nggak mau kamu lupain 🌸</p>
+
+      <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:14px">
+        <svg viewBox="0 0 200 240" width="160" xmlns="http://www.w3.org/2000/svg">
+          <rect x="52" y="18" width="96" height="22" rx="10" fill="#f9a8d4" stroke="#f472b6" stroke-width="2"/>
+          <rect x="60" y="12" width="80" height="16" rx="8" fill="#fbcfe8" stroke="#f472b6" stroke-width="1.5"/>
+          <path d="M45,40 Q40,80 38,130 Q36,180 42,210 Q55,230 100,232 Q145,230 158,210 Q164,180 162,130 Q160,80 155,40 Z" fill="rgba(255,240,247,0.88)" stroke="#f9a8d4" stroke-width="2.5"/>
+          <path d="M55,50 Q52,90 50,140" stroke="rgba(255,255,255,0.7)" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <text x="100" y="72" text-anchor="middle" font-family="Dancing Script,cursive" font-size="12" fill="#db2777" opacity="0.7">kenangan kita</text>
+          <text x="100" y="86" text-anchor="middle" font-size="10" fill="#f472b6" opacity="0.5">💕 🌸 💕</text>
+          <foreignObject x="46" y="92" width="108" height="130">
+            <div xmlns="http://www.w3.org/1999/xhtml" id="jarNotesMe" style="font-family:'Dancing Script',cursive;font-size:9px;color:#9d174d;padding:4px;overflow:hidden;max-height:126px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:3px"></div>
+          </foreignObject>
+        </svg>
+        <div id="jarEmptyMsgMe" style="font-size:.78rem;color:var(--dark);opacity:.5;text-align:center;margin-top:2px">Toples masih kosong~ yuk isi dulu! 🌸</div>
+      </div>
+
+      <textarea class="jar-textarea" id="memoryInput" placeholder="Contoh: 'Waktu kita jajan di pinggir jalan dan hujan tiba-tiba turun deras... 🌧️'" rows="3"></textarea>
+      <button class="btn-refresh" onclick="addMemory()" style="width:100%">✨ Simpan Kenangan</button>
+      <div class="jar-list" id="jarList" style="margin-top:12px"></div>
+    </div>
+  </div>
+
+  <!-- TAB 4: QUIZ -->
+  <div class="tab-section" id="tab4">
+    <div class="main-card" style="width:100%">
+      <div class="section-title">🧠 Couple Quiz — Seberapa Kenal Aku?</div>
+      <div id="quizArea">
+        <div style="text-align:center;padding:20px">
+          <div style="font-size:3rem;margin-bottom:12px">🐱</div>
+          <div style="font-family:'Dancing Script',cursive;font-size:1.2rem;color:var(--dark);margin-bottom:16px">Yuk test seberapa kenal aku sama diri sendiri &amp; pasangan kita! 💕</div>
+          <button class="btn-refresh" onclick="startQuiz()">🎯 Mulai Quiz!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <svg width="70" height="70" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg" style="margin-top:8px;opacity:.8">
+    <ellipse cx="55" cy="80" rx="32" ry="26" fill="#ffd6ec"/><ellipse cx="55" cy="46" rx="28" ry="26" fill="#ffd6ec"/>
+    <polygon points="30,25 22,8 42,22" fill="#ffb3d9"/><polygon points="31,24 25,14 39,23" fill="#ff85c1"/>
+    <polygon points="80,25 88,8 68,22" fill="#ffb3d9"/><polygon points="79,24 85,14 71,23" fill="#ff85c1"/>
+    <ellipse cx="44" cy="44" rx="6" ry="7" fill="#fff"/><ellipse cx="66" cy="44" rx="6" ry="7" fill="#fff"/>
+    <circle cx="45" cy="45" r="4" fill="#3d1f3d"/><circle cx="67" cy="45" r="4" fill="#3d1f3d"/>
+    <circle cx="46.5" cy="43.5" r="1.2" fill="#fff"/><circle cx="68.5" cy="43.5" r="1.2" fill="#fff"/>
+    <polygon points="55,53 52,57 58,57" fill="#ff85c1"/>
+    <path d="M52,57 Q55,62 58,57" fill="none" stroke="#ffb3d9" stroke-width="1.5" stroke-linecap="round"/>
+    <ellipse cx="40" cy="54" rx="7" ry="4" fill="#ffb3d9" opacity=".5"/><ellipse cx="70" cy="54" rx="7" ry="4" fill="#ffb3d9" opacity=".5"/>
+    <path d="M40,43 Q44,39 48,43" fill="none" stroke="#3d1f3d" stroke-width="2" stroke-linecap="round"/>
+    <path d="M62,43 Q66,39 70,43" fill="none" stroke="#3d1f3d" stroke-width="2" stroke-linecap="round"/>
+    <path d="M55,72 C55,72 48,66 48,62 C48,59 51,57 55,60 C59,57 62,59 62,62 C62,66 55,72 55,72Z" fill="#ff3d96" opacity=".6"/>
+  </svg>
+  <div style="font-family:'Dancing Script',cursive;font-size:1rem;color:var(--dark);margin-top:6px;opacity:.8">with love, always 💕</div>
+</div>
+
+<script>
+// HEARTS
+function createHearts(){
+  const bg=document.getElementById('heartsBg');
+  const sym=['♡','♥','✦','★','✿'];
+  for(let i=0;i<16;i++){
+    const h=document.createElement('div'); h.className='heart-float';
+    h.textContent=sym[Math.floor(Math.random()*sym.length)];
+    h.style.left=Math.random()*100+'%';
+    h.style.animationDuration=(7+Math.random()*9)+'s';
+    h.style.animationDelay=(Math.random()*9)+'s';
+    h.style.fontSize=(1+Math.random()*1.3)+'rem';
+    h.style.color=['#ff6eb4','#ffb3d9','#ff3d96','#ffd6ec'][Math.floor(Math.random()*4)];
+    bg.appendChild(h);
+  }
+}
+createHearts();
+
+// COUNTDOWN
+function updateCountdown(){
+  const target=new Date('2026-04-18T00:00:00'), now=new Date(), diff=target-now;
+  if(diff<=0){ document.getElementById('cdNums').textContent='🎉 Happy Anniversary!! 🎉'; return; }
+  const d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000), m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
+  document.getElementById('cdNums').textContent=`${d}h ${h}j ${m}m ${s}d`;
+}
+updateCountdown(); setInterval(updateCountdown,1000);
+
+// TABS
+function switchTab(n){
+  document.querySelectorAll('.tab-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab'+n).classList.add('active');
+  document.querySelectorAll('.tab-btn')[n].classList.add('active');
+}
+
+// WISH & PLAN
+function loadWish(){
+  const saved=localStorage.getItem('anniversaryWish'), c=document.getElementById('wishContainer');
+  if(!saved){ c.innerHTML='<div class="wish-display-none"><div class="wish-display-none-icon">🕯️</div><div>Dia belum bikin wish~<br>Minta dia tiup lilin dulu ya! 🥺</div></div>'; return; }
+  c.innerHTML=`<div class="wish-display-box"><div class="wish-display-text">"${saved}"</div></div><div style="text-align:center;margin-top:12px;font-family:'Dancing Script',cursive;color:var(--dark);font-size:1rem;">Semoga wish-nya terwujud ya! 🌟💕</div>`;
+}
+function loadPlan(){
+  const saved=localStorage.getItem('datePlan'), c=document.getElementById('planContainer');
+  if(!saved){ c.innerHTML='<div class="no-plan"><div class="no-plan-icon">🐾</div><div>Belum ada date plan~<br>Minta dia buka halamannya dulu ya! 🥺</div></div>'; return; }
+  const p=JSON.parse(saved);
+  c.innerHTML=`<div class="plan-item"><div class="plan-emoji">📍</div><div class="plan-info"><div class="plan-label">Tempat Date</div><div class="plan-value">${p.place||'-'}</div></div></div><div class="plan-item"><div class="plan-emoji">⏰</div><div class="plan-info"><div class="plan-label">Jam Berapa</div><div class="plan-value">${p.time||'-'}</div></div></div><div class="plan-item"><div class="plan-emoji">🌟</div><div class="plan-info"><div class="plan-label">Vibe Date</div><div class="plan-value">${p.vibe||'-'}</div></div></div><div style="text-align:center;margin-top:12px;font-family:'Dancing Script',cursive;color:var(--dark);font-size:1.05rem;">Yeay! Kita mau nge-date bareng 💕🎀</div>`;
+}
+loadWish(); loadPlan();
+
+// LOVE LETTER
+let letterOpen=false;
+function toggleLetter(){
+  letterOpen=!letterOpen;
+  const c=document.getElementById('letterContent'), e=document.getElementById('envelope'), h=document.getElementById('letterHint');
+  if(letterOpen){ c.classList.add('open'); e.style.transform='rotate(5deg) scale(1.1)'; h.textContent='💕 Klik lagi untuk tutup~'; spawnSparks(e); }
+  else { c.classList.remove('open'); e.style.transform=''; h.textContent='✨ Klik amplop untuk buka suratnya~'; }
+}
+function editLetter(){
+  const box=document.getElementById('editLetterBox'), ta=document.getElementById('letterTextarea');
+  ta.value=localStorage.getItem('loveLetter')||document.getElementById('letterContent').innerText;
+  box.style.display='block'; box.scrollIntoView({behavior:'smooth'});
+}
+function saveLetter(){
+  const val=document.getElementById('letterTextarea').value.trim();
+  if(!val)return;
+  localStorage.setItem('loveLetter',val);
+  document.getElementById('letterContent').innerHTML=val.replace(/\n/g,'<br>');
+  document.getElementById('editLetterBox').style.display='none';
+  spawnSparks(document.getElementById('envelope'));
+}
+function cancelEdit(){ document.getElementById('editLetterBox').style.display='none'; }
+const sl=localStorage.getItem('loveLetter');
+if(sl) document.getElementById('letterContent').innerHTML=sl.replace(/\n/g,'<br>');
+
+// MOOD
+function setMood(btn,emoji,msg){
+  document.querySelectorAll('.mood-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('moodResult').textContent=msg;
+  spawnSparks(btn);
+  const now=new Date();
+  const label=now.toLocaleDateString('id-ID',{day:'numeric',month:'short'})+' '+now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
+  const hist=JSON.parse(localStorage.getItem('moodHistory')||'[]');
+  hist.unshift({emoji,msg,label}); if(hist.length>10)hist.pop();
+  localStorage.setItem('moodHistory',JSON.stringify(hist)); renderMoodHistory();
+}
+function renderMoodHistory(){
+  const hist=JSON.parse(localStorage.getItem('moodHistory')||'[]'), el=document.getElementById('moodHistory');
+  if(!hist.length){ el.innerHTML='<div style="text-align:center;color:var(--dark);opacity:.6;font-size:.9rem;padding:16px">Belum ada mood yang dicatat~ pilih dulu ya! 🌸</div>'; return; }
+  el.innerHTML=hist.map(h=>`<div class="plan-item" style="margin-bottom:8px"><div class="plan-emoji">${h.emoji}</div><div class="plan-info"><div class="plan-label">${h.label}</div><div class="plan-value" style="font-size:.88rem">${h.msg}</div></div></div>`).join('');
+}
+renderMoodHistory();
+function clearMoodHistory(){ if(confirm('Hapus semua mood history? 🥺')){ localStorage.removeItem('moodHistory'); renderMoodHistory(); } }
+function renderMoodHistoryHim(){
+  const hist=JSON.parse(localStorage.getItem('moodHistoryHim')||'[]'), el=document.getElementById('moodHistoryHimView');
+  if(!hist.length){ el.innerHTML='<div style="text-align:center;color:var(--dark);opacity:.6;font-size:.9rem;padding:16px">Dia belum input mood-nya~ 🌙</div>'; return; }
+  el.innerHTML=hist.map(h=>`<div class="plan-item" style="margin-bottom:8px"><div class="plan-emoji">${h.emoji}</div><div class="plan-info"><div class="plan-label">${h.label}</div><div class="plan-value" style="font-size:.88rem">${h.msg}</div></div></div>`).join('');
+}
+renderMoodHistoryHim();
+
+// MEMORY JAR — satu toples saja
+const jarNoteColors = ['#f9a8d4','#fda4af','#fdba74','#86efac','#93c5fd','#c4b5fd'];
+const jarNoteEmojis = ['🌸','💕','✨','🥰','💗','🌷','🎀'];
+
+function buildJarNotes(mem, notesElId, emptyId, colors, emojis){
+  const notesEl = document.getElementById(notesElId);
+  const emptyEl = document.getElementById(emptyId);
+  if(!mem.length){ notesEl.innerHTML=''; emptyEl.style.display='block'; return; }
+  emptyEl.style.display='none';
+  notesEl.innerHTML = mem.slice(0,6).map((m,i)=>{
+    const color = colors[i % colors.length];
+    const emoji = emojis[i % emojis.length];
+    const shortText = m.text.length > 16 ? m.text.substring(0,16)+'…' : m.text;
+    const rot = ((i*37+13)%17 - 8);
+    return `<div style="background:${color};border-radius:6px;padding:3px 6px;font-size:8.5px;color:#fff;font-weight:800;max-width:86px;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,0.18);transform:rotate(${rot}deg);flex-shrink:0">${emoji} ${shortText}</div>`;
+  }).join('');
+}
+
+function renderMemories(){
+  const mem=JSON.parse(localStorage.getItem('memoryJar')||'[]');
+  buildJarNotes(mem, 'jarNotesMe', 'jarEmptyMsgMe', jarNoteColors, jarNoteEmojis);
+  const el=document.getElementById('jarList');
+  el.innerHTML=mem.length
+    ? mem.map((m,i)=>`<div class="jar-item"><div class="jar-item-text">✨ ${m.text}<br><span style="font-size:.75rem;font-family:'Nunito',sans-serif;opacity:.6">${m.date}</span></div><button class="jar-delete" onclick="deleteMemory(${i})">✖</button></div>`).join('')
+    : '';
+}
+function addMemory(){
+  const val=document.getElementById('memoryInput').value.trim(); if(!val)return;
+  const mem=JSON.parse(localStorage.getItem('memoryJar')||'[]'), now=new Date();
+  mem.unshift({text:val, date:now.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})});
+  localStorage.setItem('memoryJar',JSON.stringify(mem));
+  document.getElementById('memoryInput').value=''; renderMemories(); spawnSparksAt(window.innerWidth/2,window.innerHeight/2);
+}
+function deleteMemory(i){ const mem=JSON.parse(localStorage.getItem('memoryJar')||'[]'); mem.splice(i,1); localStorage.setItem('memoryJar',JSON.stringify(mem)); renderMemories(); }
+renderMemories();
+
+// QUIZ
+const quizData=[
+  {q:"Biasanya kita lebih sering ngapain waktu quality time bareng? 🥰",opts:["Nonton film bareng 🎬","Jajan & jalan-jalan 🍜","Ngobrol panjang 💬","Main game bareng 🎮"],correct:2},
+  {q:"Hal yang paling sering bikin kita ketawa bareng adalah... 😂",opts:["Jokes receh kita sendiri","Kucing/hewan lucu","Konten fyp random","Kenangan absurd kita"],correct:0},
+  {q:"Makanan favorit yang paling sering jadi pilihan waktu bareng? 🍽️",opts:["Mie/bakso","Nasi Pecel🤤🤤","Ayam 1 ekor","Dessert & minuman kece"],correct:1},
+  {q:"Kalau lagi berantem, biasanya siapa yang duluan minta maaf? 🥺",opts:["Aku duluan","Dia duluan","Bareng-bareng","Diem-dieman dulu baru baikan"],correct:0},
+  {q:"Momen paling memorable yang bikin kita makin deket? 🌟",opts:["Perjalanan / trip bareng","Waktu salah satu sakit","Konflik yang bikin kita ngerti satu sama lain","Hari pertama jadian"],correct:2},
+  {q:"Love language utama aku ke dia adalah... 💗",opts:["Words of Affirmation 💬","Quality Time ⏰","Acts of Service 🛠️","Physical Touch 🤗","Semualah diborongg🤤😍🥰😘🤗"],correct:4}
+];
+let qi=0, qs=0;
+function startQuiz(){ qi=0; qs=0; renderQ(); }
+function renderQ(){
+  if(qi>=quizData.length){ showResult(); return; }
+  const q=quizData[qi];
+  document.getElementById('quizArea').innerHTML=`<div style="text-align:right;font-size:.8rem;color:var(--dark);opacity:.7;margin-bottom:8px">Soal ${qi+1} / ${quizData.length}</div><div class="quiz-question">${q.q}</div><div class="quiz-options" id="qopts">${q.opts.map((o,i)=>`<button class="quiz-option-btn" onclick="answerQ(${i})">${o}</button>`).join('')}</div><div id="qfb" style="min-height:32px;text-align:center;font-family:'Dancing Script',cursive;font-size:1.1rem;color:var(--dark);margin-top:10px"></div>`;
+}
+function answerQ(chosen){
+  const q=quizData[qi];
+  document.querySelectorAll('.quiz-option-btn').forEach(b=>b.disabled=true);
+  const fb=document.getElementById('qfb');
+  if(chosen===q.correct){ document.querySelectorAll('.quiz-option-btn')[chosen].classList.add('correct'); qs++; fb.textContent=['Benar! 🎉 Kamu emang yang paling tau~','Yesss betul! 🌟','Uwu bener! 💕'][Math.floor(Math.random()*3)]; spawnSparksAt(window.innerWidth/2,200); }
+  else { document.querySelectorAll('.quiz-option-btn')[chosen].classList.add('wrong'); document.querySelectorAll('.quiz-option-btn')[q.correct].classList.add('correct'); fb.textContent=['Hampir~ 🥺 Tapi kamu tetep yang terbaik!','Hehe salah dikit~ nggak papa 😊','Ups! Tapi aku tetep sayang kamu 💗'][Math.floor(Math.random()*3)]; }
+  setTimeout(()=>{ qi++; renderQ(); },1600);
+}
+function showResult(){
+  let msg,em;
+  if(qs>=5){msg="Wah kamu beneran yang paling kenal aku! Cinta banget 💕";em="🏆";}
+  else if(qs>=3){msg="Lumayan! Kamu cukup tau aku, tapi masih bisa makin kenal~ 🌸";em="🎀";}
+  else{msg="Hehe kita masih punya banyak hal untuk diceritain~ 💌";em="🥺";}
+  document.getElementById('quizArea').innerHTML=`<div class="quiz-score-box"><div style="font-size:3rem">${em}</div><div class="quiz-score-num">${qs} / ${quizData.length}</div><div class="quiz-score-msg">${msg}</div></div><button class="btn-refresh" onclick="startQuiz()" style="margin-top:14px;width:100%">🔄 Main Lagi!</button>`;
+  spawnSparksAt(window.innerWidth/2,window.innerHeight/3);
+}
+
+// SPARKS
+function spawnSparks(el){ const r=el.getBoundingClientRect(); spawnSparksAt(r.left+r.width/2, r.top+r.height/2); }
+function spawnSparksAt(x,y){
+  const sym=['💕','✨','🌸','💗','⭐','🎀'];
+  for(let i=0;i<7;i++){
+    const s=document.createElement('div'); s.className='spark';
+    s.textContent=sym[Math.floor(Math.random()*sym.length)];
+    s.style.left=(x-12+(Math.random()-.5)*60)+'px';
+    s.style.top=(y-12)+'px';
+    s.style.animationDelay=(i*.08)+'s';
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),900);
+  }
+}
+</script>
+</body>
+</html>
